@@ -25,18 +25,15 @@ const QuestionnaireNav: FC<IQuestionnaireNavProps> = ({
     <div className="flex" {...props}>
       {/* Prev */}
       {!isFirst && (
-        <Button onClick={onPrev} variant="outline" size="icon">
+        <Button onClick={onPrev} variant="outline">
           <ChevronLeft className="h-4 w-4" />
+          Previous
         </Button>
       )}
       {/* Next */}
       {!isLast && (
-        <Button
-          disabled={!canGoNext}
-          onClick={onNext}
-          variant="outline"
-          size="icon"
-        >
+        <Button disabled={!canGoNext} onClick={onNext} variant="outline">
+          Next
           <ChevronRight className="h-4 w-4" />
         </Button>
       )}

@@ -16,7 +16,7 @@ const Summary: FC<ISummaryProps> = ({
   onResetQuestionnaire,
 }) => {
   return (
-    <div className="py-8  w-1/4 flex flex-col">
+    <div className="py-8 w-full  md:w-1/4  flex flex-col">
       <h3 className="text-lg font-bold"> Here is your answers</h3>
       {questions.map((question) => (
         <div key={question.name} className="flex gap-4 py-2 justify-between">
@@ -27,7 +27,10 @@ const Summary: FC<ISummaryProps> = ({
           <div>{getQuestionAnswer(question, answers)}</div>
         </div>
       ))}
-      <Button className="self-end" onClick={onResetQuestionnaire}>
+      <Button
+        className="self-center mt-0 w-1/2 md:w-auto md:self-end"
+        onClick={onResetQuestionnaire}
+      >
         Reset
       </Button>
     </div>

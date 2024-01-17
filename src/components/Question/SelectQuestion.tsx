@@ -25,9 +25,9 @@ export const SelectQuestion: FC<IQuestionProps> = ({
   };
 
   return (
-    <div>
+    <div className="flex flex-col w-full md:w-auto px-8 md:px-0">
       {question.options.map((option) => (
-        <div className="flex py-2  items-center gap-4 ">
+        <div className="flex py-2 items-center gap-4">
           <Checkbox
             key={option.value}
             id={option.value}

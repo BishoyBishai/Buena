@@ -24,12 +24,12 @@ export const Question: FC<IQuestionProps> = ({
           <SelectQuestion
             question={question}
             defaultValue={defaultValue || question.value}
-            className="w-1/2 mt-8"
+            className="md:w-1/2 mt-8"
             onAnswer={onAnswer}
           />
         ) : (
           <TextQuestion
-            className="w-1/2 mt-8"
+            className="md:w-1/2 mt-8"
             defaultValue={defaultValue || question.value}
             onAnswer={onAnswer}
           />

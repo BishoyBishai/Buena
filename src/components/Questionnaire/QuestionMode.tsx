@@ -16,7 +16,7 @@ export const QuestionMode: FC<IQuestionnaireProps> = ({
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<TAnswers>({});
 
-  const progressValue = ((currentQuestion + 1) / questions.length) * 100;
+  const progressValue = (currentQuestion / questions.length) * 100;
   const question = questions[currentQuestion];
 
   const handleNextQuestion = useCallback(() => {
@@ -46,7 +46,7 @@ export const QuestionMode: FC<IQuestionnaireProps> = ({
   return (
     <div className="flex flex-col w-full flex-1 my-4 ">
       <Progress
-        className="w-1/2 self-center shadow-inner"
+        className="md:w-1/2 self-center shadow-inner"
         value={progressValue}
       />
       <Question
