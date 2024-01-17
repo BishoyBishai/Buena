@@ -1,5 +1,5 @@
 import { FC, InputHTMLAttributes, useState } from "react";
-import { Input } from "../ui/input";
+import { Input } from "../ui/Input";
 
 interface IQuestionProps extends InputHTMLAttributes<HTMLInputElement> {
   defaultValue: string;
