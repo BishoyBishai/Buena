@@ -1,60 +1,38 @@
-import { TQuestion } from "@/interfaces/question";
-import { FC, useCallback, useState } from "react";
-import { Question } from "../Question";
-import { Progress } from "../ui/progress";
-import QuestionnaireNav from "./QuestionnaireNav";
+import { TAnswers, TQuestion } from "@/interfaces/question";
+import { FC, useState } from "react";
+import { QuestionMode } from "./QuestionMode";
+import Summary from "./Summary";
 
 interface IQuestionnaireProps {
   questions: TQuestion[];
 }
 
 export const Questionnaire: FC<IQuestionnaireProps> = ({ questions }) => {
-  const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [mode, setMode] = useState<"questions" | "summary">("questions");
+  const [answers, setAnswers] = useState<TAnswers>({});
 
-  const progressValue = ((currentQuestion + 1) / questions.length) * 100;
-  const question = questions[currentQuestion];
-
-  const handleNextQuestion = useCallback(() => {
-    setCurrentQuestion((prevQuestion) => prevQuestion + 1);
-  }, []);
-
-  const handlePrevQuestion = useCallback(() => {
-    setCurrentQuestion((prevQuestion) => prevQuestion - 1);
-  }, []);
-
-  const handleAnswerQuestion = useCallback(
-    (value: string) => {
-      setAnswers((prevAnswers) => ({
-        ...prevAnswers,
-        [question.name]: value,
-      }));
-    },
-    [question.name]
-  );
-
-  const canGoNext = !question.required || !!answers[question.name];
+  const handleCompleteQuestionnaire = (questionnaireAnswers: TAnswers) => {
+    setAnswers(questionnaireAnswers);
+    setMode("summary");
+  };
+  const handleResetQuestionnaire = () => {
+    setMode("questions");
+  };
 
   return (
-    <div className="flex flex-col w-full flex-1 my-4 ">
-      <Progress
-        className="w-1/2 self-center shadow-inner"
-        value={progressValue}
-      />
-      <Question
-        key={question.name}
-        defaultValue={answers[question.name]}
-        question={question}
-        onAnswer={handleAnswerQuestion}
-      />
-      <QuestionnaireNav
-        className="flex justify-end"
-        isFirst={currentQuestion === 0}
-        isLast={currentQuestion === questions.length - 1}
-        onNext={handleNextQuestion}
-        onPrev={handlePrevQuestion}
-        canGoNext={canGoNext}
-      />
+    <div className="flex">
+      {mode === "questions" ? (
+        <QuestionMode
+          questions={questions}
+          onComplete={handleCompleteQuestionnaire}
+        />
+      ) : (
+        <Summary
+          questions={questions}
+          answers={answers}
+          onResetQuestionnaire={handleResetQuestionnaire}
+        />
+      )}
     </div>
   );
 };

@@ -24,3 +24,5 @@ export interface IRadioQuestion extends IBasicQuestion {
 }
 
 export type TQuestion = ITextQuestion | IRadioQuestion;
+
+export type TAnswers = Record<string, string>;

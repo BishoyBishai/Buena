@@ -8,6 +8,7 @@ interface IQuestionnaireNavProps
   isLast: boolean;
   canGoNext: boolean;
   onNext: () => void;
+  onComplete: () => void;
   onPrev: () => void;
 }
 
@@ -16,6 +17,7 @@ const QuestionnaireNav: FC<IQuestionnaireNavProps> = ({
   isLast,
   onNext,
   onPrev,
+  onComplete,
   canGoNext,
   ...props
 }) => {
@@ -36,6 +38,12 @@ const QuestionnaireNav: FC<IQuestionnaireNavProps> = ({
           size="icon"
         >
           <ChevronRight className="h-4 w-4" />
+        </Button>
+      )}
+      {/* Summary */}
+      {isLast && (
+        <Button disabled={!canGoNext} onClick={onComplete} variant="outline">
+          Submit
         </Button>
       )}
     </div>
