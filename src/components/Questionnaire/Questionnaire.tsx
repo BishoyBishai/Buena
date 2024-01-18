@@ -2,6 +2,7 @@ import { TAnswers, TQuestion } from "@/interfaces/question";
 import { FC, useState } from "react";
 import { QuestionMode } from "./QuestionMode";
 import Summary from "./Summary";
+import { motion } from "framer-motion";
 
 interface IQuestionnaireProps {
   questions: TQuestion[];
@@ -20,7 +21,14 @@ export const Questionnaire: FC<IQuestionnaireProps> = ({ questions }) => {
   };
 
   return (
-    <div className="flex">
+    <motion.div
+      key={mode}
+      initial={{ opacity: 0, x: -100 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 100 }}
+      transition={{ duration: 0.5 }}
+      className="flex"
+    >
       {mode === "questions" ? (
         <QuestionMode
           questions={questions}
@@ -33,6 +41,6 @@ export const Questionnaire: FC<IQuestionnaireProps> = ({ questions }) => {
           onResetQuestionnaire={handleResetQuestionnaire}
         />
       )}
-    </div>
+    </motion.div>
   );
 };

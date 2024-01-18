@@ -2,7 +2,7 @@ import { TQuestion } from "@/interfaces/question";
 import { FC } from "react";
 import { TextQuestion } from "./TextQuestion";
 import { SelectQuestion } from "./SelectQuestion";
-
+import { motion } from "framer-motion";
 interface IQuestionProps {
   question: TQuestion;
   defaultValue: string;
@@ -16,7 +16,13 @@ export const Question: FC<IQuestionProps> = ({
 }) => {
   return (
     question && (
-      <div className="flex flex-col flex-1 items-center py-16">
+      <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        exit={{ x: 100, opacity: 0 }}
+        transition={{ type: "tween", duration: 0.5 }}
+        className="flex flex-col flex-1 items-center py-16"
+      >
         <div className=" scale-150 p-8">{question.icon}</div>
         <h2 className="text-xl font-bold">{question.label}</h2>
 
@@ -34,7 +40,7 @@ export const Question: FC<IQuestionProps> = ({
             onAnswer={onAnswer}
           />
         )}
-      </div>
+      </motion.div>
     )
   );
 };
