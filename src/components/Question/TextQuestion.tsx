@@ -5,7 +5,9 @@ interface IQuestionProps extends InputHTMLAttributes<HTMLInputElement> {
   defaultValue: string;
   onAnswer: (value: string) => void;
 }
-
+/**
+ * TextQuestion is component for render question with input tag
+ */
 export const TextQuestion: FC<IQuestionProps> = ({
   defaultValue,
   onAnswer,

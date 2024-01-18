@@ -1,6 +1,6 @@
 import { FC, InputHTMLAttributes, useState } from "react";
 import { IRadioQuestion } from "@/interfaces/question";
-import { Checkbox } from "../ui/checkbox";
+import { Checkbox } from "../ui/Checkbox";
 import { Label } from "@radix-ui/react-label";
 
 interface IQuestionProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -8,7 +8,9 @@ interface IQuestionProps extends InputHTMLAttributes<HTMLInputElement> {
   question: IRadioQuestion;
   onAnswer: (value: string) => void;
 }
-
+/**
+ * SelectQuestion is component for render question with radio checkbox
+ */
 export const SelectQuestion: FC<IQuestionProps> = ({
   onAnswer,
   question,

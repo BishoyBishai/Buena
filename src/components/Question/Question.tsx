@@ -23,9 +23,10 @@ export const Question: FC<IQuestionProps> = ({
         transition={{ type: "tween", duration: 0.5 }}
         className="flex flex-col flex-1 items-center py-16"
       >
-        <div className=" scale-150 p-8">{question.icon}</div>
+        <div className="scale-150 p-8">{question.icon}</div>
         <h2 className="text-xl font-bold">{question.label}</h2>
 
+        {/* Based on the question type display the text, or select question */}
         {question.type === "radio" ? (
           <SelectQuestion
             question={question}

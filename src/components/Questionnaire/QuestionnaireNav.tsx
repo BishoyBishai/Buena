@@ -23,6 +23,7 @@ const QuestionnaireNav: FC<IQuestionnaireNavProps> = ({
 }) => {
   return (
     <div className="flex" {...props}>
+      {/* If the question index is first hide previous button */}
       {/* Prev */}
       {!isFirst && (
         <Button onClick={onPrev} variant="outline">
@@ -30,6 +31,8 @@ const QuestionnaireNav: FC<IQuestionnaireNavProps> = ({
           Previous
         </Button>
       )}
+
+      {/* If the question index is not last display next button */}
       {/* Next */}
       {!isLast && (
         <Button disabled={!canGoNext} onClick={onNext} variant="outline">
@@ -37,6 +40,8 @@ const QuestionnaireNav: FC<IQuestionnaireNavProps> = ({
           <ChevronRight className="h-4 w-4" />
         </Button>
       )}
+
+      {/* If the question index is last display Submit button to call complete questionnaire */}
       {/* Summary */}
       {isLast && (
         <Button disabled={!canGoNext} onClick={onComplete} variant="outline">

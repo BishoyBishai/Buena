@@ -7,7 +7,11 @@ import { motion } from "framer-motion";
 interface IQuestionnaireProps {
   questions: TQuestion[];
 }
-
+/**
+ * Questionnaire is a component with two mode
+ * 1- questions to render array of questions
+ * 2- summary to render answers of the questionnaire
+ */
 export const Questionnaire: FC<IQuestionnaireProps> = ({ questions }) => {
   const [mode, setMode] = useState<"questions" | "summary">("questions");
   const [answers, setAnswers] = useState<TAnswers>({});
